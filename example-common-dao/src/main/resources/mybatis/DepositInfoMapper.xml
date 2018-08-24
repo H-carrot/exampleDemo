@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.netease.haitao.finance.expense.dao.mapper.DepositInfoMapper" >
+    <resultMap id="DepositInfoMap" type="DepositInfo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+        <result column="currency_type" property="currencyType" jdbcType="INTEGER" />
+        <result column="deposit_needed" property="depositNeeded" jdbcType="NUMERIC" />
+        <result column="deposit_received" property="depositReceived" jdbcType="NUMERIC" />
+        <result column="deposit_balance" property="depositBalance" jdbcType="NUMERIC" />
+        <result column="deposit_state" property="depositState" jdbcType="INTEGER" />
+        <result column="urgent_merchant" property="urgentMerchant" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="supplierNameResult" type="java.lang.String">
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="currencyTypeResult" type="java.lang.Integer">
+        <result column="currency_type" property="currencyType" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="allDepositInfoColumns">
+        id, supplier_id, supplier_name, currency_type, deposit_needed, deposit_received, deposit_balance,
+        deposit_state, urgent_merchant,create_time,update_time
+    </sql>
+
+    <insert id="insertDepositInfo" parameterType="DepositInfo">
+        <selectKey keyProperty="id" resultType="Long" order="BEFORE" >
+            select <include refid="commonSeq.deposit_info_nextval"/> as id from dual
+        </selectKey>
+        insert into fes_deposit_info (<include refid="allDepositInfoColumns" />)
+        values (
+        #{id, jdbcType=BIGINT},
+        #{supplierId, jdbcType=BIGINT},
+        #{supplierName, jdbcType=VARCHAR},
+        #{currencyType, jdbcType=BIGINT},
+        #{depositNeeded, jdbcType=NUMERIC},
+        #{depositReceived, jdbcType=NUMERIC},
+        #{depositBalance, jdbcType=NUMERIC},
+        #{depositState, jdbcType=INTEGER},
+        #{urgentMerchant, jdbcType=INTEGER},
+        systimestamp,
+        systimestamp
+        )
+    </insert>
+
+    <select id="countDepositInfoByCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from fes_deposit_info where 1=1
+        <if test="supplierId != null">
+            and supplier_Id = #{supplierId, jdbcType=BIGINT}
+        </if>
+        <if test="supplierName != null">
+            and supplier_name = #{supplierName, jdbcType=VARCHAR}
+        </if>
+        <if test="currencyType != null">
+            and currency_type = #{currencyType, jdbcType=INTEGER}
+        </if>
+        <if test="depositState != null">
+            and deposit_state = #{depositState, jdbcType=INTEGER}
+        </if>
+
+    </select>
+
+    <select id="getDepositInfoByCondition" resultMap="DepositInfoMap">
+        select * from fes_deposit_info where 1=1
+        <if test="supplierId != null">
+            and supplier_id = #{supplierId, jdbcType=BIGINT}
+        </if>
+        <if test="supplierName != null">
+            and supplier_name = #{supplierName, jdbcType=VARCHAR}
+        </if>
+        <if test="currencyType != null">
+            and currency_type = #{currencyType, jdbcType=INTEGER}
+        </if>
+        <if test="depositState != null">
+            and deposit_state = #{depositState, jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="getAllMerchantName" resultMap="supplierNameResult">
+        select supplier_name from fes_deposit_info where 1=1
+    </select>
+
+    <select id="getAllCurrency" resultMap="currencyTypeResult">
+        select distinct(currency_type) from fes_deposit_info where 1=1
+    </select>
+
+    <select id="getDepositBalancebyMerchantId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+        select deposit_balance from fes_deposit_info where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </select>
+
+    <select id="getCurrencyTypeByMerchantId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select currency_type from fes_deposit_info where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </select>
+
+    <select id="getDepositNeededBySupplierId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+        select deposit_needed from fes_deposit_info where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </select>
+
+    <update id="updateDepositBalancebyMerchantId" >
+        update fes_deposit_info set deposit_balance = #{depositBalance, jdbcType=NUMERIC} where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateDepositState" >
+        update fes_deposit_info set deposit_state = #{depositState, jdbcType=INTEGER} where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </update>
+
+    <update id="updateUrgentMerchant" >
+        update fes_deposit_info set urgent_merchant = #{urgentMerchant, jdbcType=INTEGER} where supplier_id = #{supplierId, jdbcType=BIGINT}
+    </update>
+
+</mapper>

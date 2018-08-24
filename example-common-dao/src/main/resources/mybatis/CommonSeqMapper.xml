@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://dtd.hz.netease.com/mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="commonSeq">
+    <sql id="nextVal">
+        TO_CHAR(SYSDATE,'yyMMdd')||LPAD(global.common_id_seq.nextval, 8, '0')
+    </sql>
+    <sql id="expense_log_nextval">
+        to_number(700||TO_CHAR(SYSDATE,'yyMMdd')||LPAD(expense_id_seq.nextval, 8, '0'))
+    </sql>
+    <sql id="deposit_info_nextval">
+        to_number(701||TO_CHAR(SYSDATE,'yyMMdd')||LPAD(expense_id_seq.nextval, 8, '0'))
+    </sql>
+    <sql id="deposit_detail_nextval">
+        to_number(702||TO_CHAR(SYSDATE,'yyMMdd')||LPAD(expense_id_seq.nextval, 8, '0'))
+    </sql>
+</mapper>

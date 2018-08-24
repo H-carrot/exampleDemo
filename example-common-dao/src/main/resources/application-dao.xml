@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="haitaofinance" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${haitao.finance.ojdbc.driverClassName}"/>
+        <property name="url" value="${haitao.finance.ojdbc.url}"/>
+        <property name="username" value="${haitao.finance.ojdbc.username}"/>
+        <property name="password" value="${haitao.finance.ojdbc.password}"/>
+        <property name="initialSize" value="10"/>
+        <property name="maxActive" value="20"/>
+        <property name="minIdle" value="10"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="SELECT 1 from dual"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="60000"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="300"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="haitaofinance"/>
+        <property name="nestedTransactionAllowed" value="true"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/**/*.xml"/>
+        <property name="dataSource" ref="haitaofinance"/>
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
+          scope="prototype">
+        <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="annotationClass" value="com.hcarrot.example.common.dao.annotation.Mapper"/>
+        <property name="basePackage" value="com.netease.haitao.finance.expense.dao.mapper"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+    </bean>
+
+</beans>

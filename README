@@ -1,0 +1,27 @@
+### 费用管理系统
+
+本工程默认为由容器启动的web工程，如果需要修改为spring-boot启动或者其他main方法启动，请自行修改（需要把server的package属性由war修改为jar）
+1.关于架构
+	工程架构为4层架构
+
+	1）api层（对外发布api-jar包层）。
+
+	2）common层（公共服务层）。
+		common模块：依赖上层所有api，专门放置业务模块或其他common层的需要使用的静态工具类、字典类、常数类等。
+		dao模块：依赖common模块。主要是统一进行dao封装的模块，供下层所有模块调用。
+		service模块：依赖dao模块。放置业务层需要使用的公共service（至少两个业务层使用）、公共服务框架（dubbo consumer、disconf等）。最好不要放置实际业务代码。
+
+	3）module层（业务层）。依赖service模块。各个模块是一个或者一组业务的集合，彼此之间没有依赖
+		deposit：保证金模块
+
+	4）starter层（启动层、配置管理工程、前端工程）。依赖module层模块，要运行哪个业务，就依赖于哪个module。默认都依赖。
+		启动：启动入口在这里。
+			与业务无关的所有其他的代码可以放置该层，例如访问首页、登陆、权限验证、健康检查等。
+
+		配置：配置目录固定为4种：local、online、pre、test
+
+2.关于单元测试：
+	各自模块的单元测试请在各自模块下的test目录中编写。
+
+idea mybatis插件：https://github.com/gejun123456/MyBatisCodeHelper-Pro
+idea lombok插件：https://github.com/mplushnikov/lombok-intellij-plugin
