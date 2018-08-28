@@ -2,43 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.hcarrot</groupId>
-    <artifactId>springboot-multiBS</artifactId>
+    <artifactId>multiBS-common-dao</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!-- 此处改为pom -->
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>springboot-multiBS</name>
+    <name>multiBS-common-dao</name>
     <description>Demo project for Spring Boot</description>
 
-
-    <modules>
-        <module>multiBS-common</module>
-        <module>multiBS-common-dao</module>
-        <module>multiBS-module-controller</module>
-        <module>multiBS-starter</module>
-    </modules>
-
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>springboot-multiBS</artifactId>
+        <groupId>com.hcarrot</groupId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
+        <!-- module依赖  -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.hcarrot</groupId>
+            <artifactId>multiBS-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!--Spring Boot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -117,29 +105,26 @@
         </dependency>
     </dependencies>
 
-    <!--指定使用maven打包-->
+    <!--spring boot打包的话需要指定一个唯一的入门-->
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.example.WebApplication</mainClass>
+                    <layout>ZIP</layout>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
-                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
