@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="multiBS-common" />
         <module name="multiBS-common-dao" />
+        <module name="multiBS-common-service" />
         <module name="multiBS-module-controller" />
         <module name="multiBS-starter" />
       </profile>

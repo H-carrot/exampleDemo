@@ -10,7 +10,7 @@ public final class ProjectConstant {
     public static final String MAPPER_PACKAGE = BASE_PACKAGE + ".dao.mapper";//生成的Mapper所在包
     public static final String SERVICE_PACKAGE = BASE_PACKAGE + ".module.service";//生成的Service所在包
     public static final String SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//生成的ServiceImpl所在包
-    public static final String CONTROLLER_PACKAGE = BASE_PACKAGE + "module.controller";//生成的Controller所在包
+    public static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".module.controller";//生成的Controller所在包
 
     public static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".dao.core.Mapper";//Mapper插件基础接口的完全限定名
 }

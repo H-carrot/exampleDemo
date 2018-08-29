@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "data": {
+    "id": 1,
+    "nickName": "土豆",
+    "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+    "registerDate": 1498199063000,
+    "sex": 1,
+    "username": "89921218@qq.com"
+  },
+  "message": "SUCCESS"
+}

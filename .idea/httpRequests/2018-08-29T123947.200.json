@@ -1,0 +1,108 @@
+{
+  "code": 200,
+  "data": {
+    "endRow": 10,
+    "firstPage": 0,
+    "hasNextPage": false,
+    "hasPreviousPage": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "lastPage": 0,
+    "list": [
+      {
+        "id": 1,
+        "nickName": "土豆",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "89921218@qq.com"
+      },
+      {
+        "id": 2,
+        "nickName": "土豆-2",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "2@qq.com"
+      },
+      {
+        "id": 3,
+        "nickName": "土豆-3",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "3@qq.com"
+      },
+      {
+        "id": 4,
+        "nickName": "土豆-4",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "4@qq.com"
+      },
+      {
+        "id": 5,
+        "nickName": "土豆-5",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "5@qq.com"
+      },
+      {
+        "id": 6,
+        "nickName": "土豆-6",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "6@qq.com"
+      },
+      {
+        "id": 7,
+        "nickName": "土豆-7",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "7@qq.com"
+      },
+      {
+        "id": 8,
+        "nickName": "土豆-8",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "8@qq.com"
+      },
+      {
+        "id": 9,
+        "nickName": "土豆-9",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "9@qq.com"
+      },
+      {
+        "id": 10,
+        "nickName": "土豆-10",
+        "password": "1ee04e0b1cb5af7367c80c22e42efd8b",
+        "registerDate": 1498199063000,
+        "sex": 1,
+        "username": "10@qq.com"
+      }
+    ],
+    "navigateFirstPage": 0,
+    "navigateLastPage": 0,
+    "navigatePages": 8,
+    "navigatepageNums": [],
+    "nextPage": 0,
+    "orderBy": null,
+    "pageNum": 0,
+    "pageSize": 0,
+    "pages": 0,
+    "prePage": 0,
+    "size": 10,
+    "startRow": 1,
+    "total": 10
+  },
+  "message": "SUCCESS"
+}

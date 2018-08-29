@@ -19,6 +19,7 @@
         <module>multiBS-common-dao</module>
         <module>multiBS-module-controller</module>
         <module>multiBS-starter</module>
+        <module>multiBS-common-service</module>
     </modules>
 
     <parent>
