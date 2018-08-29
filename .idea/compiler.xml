@@ -13,5 +13,12 @@
         <module name="multiBS-starter" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="example-api" target="8" />
+      <module name="example-common-dao" target="8" />
+      <module name="example-common-service" target="8" />
+      <module name="example-module-expense" target="8" />
+      <module name="example-starter" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
